@@ -1,4 +1,5 @@
 from time import sleep, time
+from os import remove
 from bot import aria2, download_dict_lock, download_dict, STOP_DUPLICATE, BASE_URL, TORRENT_DIRECT_LIMIT, ZIP_UNZIP_LIMIT, LEECH_LIMIT, LOGGER, STORAGE_THRESHOLD
 from bot.helper.mirror_utils.upload_utils.gdriveTools import GoogleDriveHelper
 from bot.helper.ext_utils.bot_utils import is_magnet, getDownloadByGid, new_thread, get_readable_file_size, bt_selection_buttons
@@ -136,6 +137,8 @@ def __onBtDownloadComplete(api, gid):
                 api.set_options({'max-upload-limit': '0'}, [download])
             except Exception as e:
                 LOGGER.error(f'{e} You are not able to seed because you added global option seed-time=0 without adding specific seed_time for this torrent')
+        else:
+            api.client.force_pause(gid)
         listener.onDownloadComplete()
         if listener.seed:
             with download_dict_lock:

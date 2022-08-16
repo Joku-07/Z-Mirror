@@ -6,7 +6,7 @@ from threading import Thread
 from telegram import InlineKeyboardMarkup, ChatPermissions
 from telegram.ext import CommandHandler
 from bot import dispatcher, DOWNLOAD_DIR, LOGGER, MEGA_KEY, BOT_PM, FSUB, CHANNEL_USERNAME, FSUB_CHANNEL_ID, TITLE_NAME, CHAT_ID, AUTO_MUTE
-from bot.helper.ext_utils.bot_utils import is_url, is_magnet, is_mega_link, is_gdrive_link, get_content_type
+from bot.helper.ext_utils.bot_utils import is_url, is_magnet, is_mega_link, is_gdrive_link, is_gdtot_link, is_appdrive_link, get_content_type
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 from bot.helper.mirror_utils.download_utils.aria2_download import add_aria2c_download
 from bot.helper.mirror_utils.download_utils.gd_downloader import add_gd_download
@@ -200,6 +200,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
         content_type = get_content_type(link)
         if content_type is None or re_match(r'text/html|text/plain', content_type):
             try:
+                is_appdrive = is_appdrive(link)
                 is_gdtot = is_gdtot_link(link)
                 link = direct_link_generator(link)
                 LOGGER.info(f"Generated link: {link}")
