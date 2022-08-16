@@ -1,5 +1,5 @@
 from base64 import b64encode
-from re import match as re_match, split as re_split
+from re import match as re_match, search as re_search, split as re_split
 from time import sleep, time
 from os import path as ospath
 from threading import Thread
@@ -57,6 +57,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
     name_args = mesg[0].split('|', maxsplit=1)
     index = 1
     is_gdtot = False
+    is_appdrive = False
     ratio = None
     seed_time = None
     select = False
