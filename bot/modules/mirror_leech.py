@@ -200,8 +200,8 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
         content_type = get_content_type(link)
         if content_type is None or re_match(r'text/html|text/plain', content_type):
             try:
-                is_appdrive = is_appdrive(link)
                 is_gdtot = is_gdtot_link(link)
+                is_appdrive = is_appdrive_link(link)
                 link = direct_link_generator(link)
                 LOGGER.info(f"Generated link: {link}")
             except DirectDownloadLinkException as e:
@@ -229,7 +229,7 @@ def _mirror_leech(bot, message, isZip=False, extract=False, isQbit=False, isLeec
             gmsg += f"Use /{BotCommands.UnzipMirrorCommand[0]} to extracts Google Drive archive folder/file"
             return sendMessage(gmsg, bot, message)
         else:
-            Thread(target=add_gd_download, args=(link, f'{DOWNLOAD_DIR}{listener.uid}', listener, name, is_gdtot)).start()
+            Thread(target=add_gd_download, args=(link, f'{DOWNLOAD_DIR}{listener.uid}', listener, name, is_gdtot, is_appdrive)).start()
     elif is_mega_link(link):
         if MEGA_KEY is not None:
             Thread(target=MegaDownloader(listener).add_download, args=(link, f'{DOWNLOAD_DIR}{listener.uid}/')).start()
