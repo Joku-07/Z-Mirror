@@ -208,7 +208,7 @@ def add_aria2c_download(link: str, path, listener, filename, auth, select, ratio
         return sendMessage(error, listener.bot, listener.message)
     with download_dict_lock:
         download_dict[listener.uid] = AriaDownloadStatus(download.gid, listener)
-        LOGGER.info(f"Download startedwith Aria2: {download.gid}")
+        LOGGER.info(f"Download started with Aria2: {download.gid}")
     listener.onDownloadStart()
     if not select:
         sendStatusMessage(listener.message, listener.bot)
