@@ -49,7 +49,7 @@ def stats(update, context):
     memory = virtual_memory()
     mem_p = memory.percent
     stats = f'<b><i><u>{TITLE_NAME} Bot Statistics</u></i></b>\n\n'\
-            f'<b>CPU</b>:  {progress_bar(cpuUsage)} {cpuUsage}%\n' \
+            f'<b>CPU</b>: {progress_bar(cpuUsage)} {cpuUsage}%\n' \
             f'<b>RAM</b>: {progress_bar(mem_p)} {mem_p}%\n' \
             f'<b>DISK</b>: {progress_bar(disk)} {disk}%\n\n' \
             f'<b>Updated:</b> {last_commit}\n'\
@@ -64,10 +64,10 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("Report Group", "https://t.me/Mltb_chat_unofficial")
+    buttons.buildbutton("Report Group", "https://t.me/mff_films")
     buttons.buildbutton("Repo", "https://github.com/Dawn-India/Z-Mirror")
-    buttons.buildbutton("Mirror Group", "https://t.me/z_mirror")
-    buttons.buildbutton("Owner", "https://t.me/z_mirror")
+    buttons.buildbutton("Mivie Channel", "https://t.me/mff_films")
+    buttons.buildbutton("Owner", "https://t.me/im_wazzim7")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
