@@ -120,7 +120,7 @@ def get_progress_bar_string(status):
     p = min(max(p, 0), 100)
     cFull = p // 8
     p_str = '⬢' * cFull
-    p_str += '⬡' * (12 - cFull)
+    p_str += '⬡' * (8 - cFull)
     p_str = f"{p_str}"
     return p_str
 
@@ -134,7 +134,7 @@ def progress_bar(percentage):
     except:
         percentage = 0
     return ''.join(
-        p_used if i <= percentage // 10 else p_total for i in range(1, 11)
+        p_used if i <= percentage // 10 else p_total for i in range(1, 8)
     )
 
 def auto_delete_message(bot, cmd_message: Message, bot_message: Message):
@@ -246,7 +246,7 @@ T: {disk_t}GB | F: {disk_f}GB
 Working For: {currentTime}
 T-DL: {recv} | T-UL: {sent}
 
-Made with ❤️ by Dawn
+Made with ❤️ by WazziM ⚡
 """
 
 #---Thanks for deleting my name ❤️ Appreciate it---#
